@@ -29,21 +29,12 @@ async def ProxyTest():
                 tasks.append(asyncio.create_task(ListProxy(list(i.keys())[0], list(i.values())[0], session)))
             FreeProxyList = await asyncio.gather(*tasks, return_exceptions=True)
 
-            print(sum(FreeProxyList, []))
-
             tasksUrl = []
             for proxy in sum(FreeProxyList, []):
                 tasksUrl.append(asyncio.create_task(UrlProxy(proxy, session)))
             FreeProxyListResult = await asyncio.gather(*tasksUrl, return_exceptions=True)
-
-            print(FreeProxyListResult)
-
-            sleep(5000)
-
         except:
-            print("error FreeProxyList")
             FreeProxyAll = []
-        print("FreeProxyList", FreeProxyList)
 
 
 async def ListProxy(PartUrl, port, session):
@@ -101,6 +92,5 @@ async def UrlProxy(i, session):
                                proxy=f"http://{i}", timeout=5, headers=headers, ssl_context=None) as response:
             if response.status == 200:
                 return f"http://{i}"
-
     except:
         await asyncio.sleep(0)
