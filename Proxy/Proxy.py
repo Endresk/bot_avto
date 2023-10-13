@@ -37,9 +37,7 @@ async def ProxyAll():
 
             FPLProxyAll = list(filter(None, ProxyFPL))
         except:
-            print("error ListFPLProxyAll")
             FPLProxyAll = []
-        print("FPLProxyAll", FPLProxyAll)
 
         # -----
         # Сайт https://fineproxy.org/wp-content/themes/fineproxy/proxy-list.php?0.8830517118035457
@@ -57,10 +55,7 @@ async def ProxyAll():
 
                 FineProxyAll = list(filter(None, FineProxyResult))
         except:
-            print("error FineProxyAll")
             FineProxyAll = []
-
-        print("FineProxyAll", FineProxyAll)
 
         # -----
         # Сайт https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
@@ -77,9 +72,7 @@ async def ProxyAll():
 
                 GithubTheSpeedXAll = list(filter(None, GithubTheSpeedXResult))
         except:
-            print("error GithubTheSpeedXAll")
             GithubTheSpeedXAll = []
-        print("GithubTheSpeedXAll", GithubTheSpeedXAll)
 
         # -----
         # Сайт https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
@@ -122,9 +115,7 @@ async def ProxyAll():
 
                 GhostEalThAll = list(filter(None, GithubTheSpeedXResult))
         except:
-            print("error GhostEalThAll")
             GhostEalThAll = []
-        print("GhostEaLth", GhostEalThAll)
 
         # -----
         # Сайт https://freeproxyupdate.com/free-proxy-list-txt-download
@@ -152,9 +143,7 @@ async def ProxyAll():
 
                 DictGeoNodeAll = list(filter(None, DictGeoNodeResultAll))
         except:
-            print("error DictGeoNodeAll")
             DictGeoNodeAll = []
-        print("FPLProxyAll", DictGeoNodeAll)
 
     AllListProxy = list(set(list(chain(FPLProxyAll, FineProxyAll, GithubTheSpeedXAll, GhostEalThAll, DictGeoNodeAll))))
     print(AllListProxy)
