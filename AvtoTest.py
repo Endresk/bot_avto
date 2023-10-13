@@ -48,8 +48,6 @@ async def Models():
             f"Brands/Audi/Models/ListEndModelsAll.json", "w"))
         print(ListEndModels)
 
-        sleep(500)
-
 
 async def UrlModelsSem(UrlModel, Name, Age, City, sem, session, count):
     async with sem:
