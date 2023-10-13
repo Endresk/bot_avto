@@ -118,10 +118,7 @@ class Auto(Thread):
                 tasks = []
                 Time = len(ListModels) / 15
 
-                print(len(ListModels))
-
                 await bot.send_message(self.chat, f"Примерное время ожидания {Time} секунд")
-                print(Time)
 
                 for m in ListModels:
                     tasks.append(asyncio.create_task(
@@ -158,8 +155,6 @@ class Auto(Thread):
 
                     wb.save(path=FileXLxs)
 
-        print(time() - t1)
-
         return ListEnd
 
     async def UrlModelsSem(self, UrlModel, Name, Age, City, Price, sem, session):
@@ -170,7 +165,6 @@ class Auto(Thread):
         count = 0
         ListEndModels = []
         UrlModelCache = f"http://webcache.googleusercontent.com/search?q=cache:{UrlModel}&strip=0&vwsrc=1"
-        print(UrlModel, Age)
         while True:
             try:
                 with async_timeout.timeout(15):
@@ -178,8 +172,6 @@ class Auto(Thread):
                                            ssl_context=None,
                                            cookies=cookies) as ResponseModel:
                         response = await ResponseModel.read()
-
-                        print(ResponseModel.status)
 
                         if ResponseModel.status != 429:
                             if ResponseModel.status != 404:
@@ -194,8 +186,6 @@ class Auto(Thread):
 
                                         if int(SplitNoJsonScript) >= 2010:
                                             ListEndModels.extend([UrlModel, Name, Age, Price, City])
-                                            print(SplitNoJsonScript)
-
                                     else:
                                         ListEndModels.extend(
                                             await self.UrlNoCache(UrlModel, Name, Age, City, Price, session))
@@ -245,11 +235,8 @@ class Auto(Thread):
                 SplitNoJsonScriptDRom = NoJsonScriptDRom.split(
                     'о регистрации","data":', 1)[1].split(".")[1].split(" по ")[0]
 
-                print(SplitNoJsonScriptDRom)
-
                 if int(SplitNoJsonScriptDRom) >= 2011:
                     ListEndModels.extend([UrlModel, Name, Age, Price, City])
-                    print(SplitNoJsonScriptDRom)
 
         return ListEndModels
 
@@ -272,8 +259,6 @@ class Auto(Thread):
                             except:
                                 SumPage = str(
                                     pq.find('#tabs div.css-1ksi09z').text()).split(" ")[0]
-
-                            print(url, SumPage)
 
                             if SumPage:
                                 SumPage = int(SumPage)
@@ -335,7 +320,6 @@ class Auto(Thread):
                     async with session.get(urlPage,
                                            headers=headers,
                                            ssl_context=None, cookies=cookies) as ResponsePage:
-                        print(urlPage)
                         if ResponsePage.status == 200:
                             response = await ResponsePage.text()
                             pq = PyQuery(response, parser="html")
